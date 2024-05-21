@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link href="{{ asset('assets/form.css') }}" rel="stylesheet">
+
 
     <title>@yield('navplantilla')</title>
 
@@ -40,25 +41,31 @@
               <li class="nav-item">
                 <a class="nav-link" href="listMecanicos.php">Mecanicos</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="listMecanicos.php">Insumos</a>
+              </li>
+              
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Ordenes de Servicio
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="#">Nueva Orden</a></li>
-                  <li><a class="dropdown-item" href="#">Listado de Ordenes</a></li>
+                  <li><a class="dropdown-item" href="listOservicios.php">Nueva Orden</a></li>
+                  <li><a class="dropdown-item" href="listOservicios.php">Listado de Ordenes</a></li>
                   <li>
                     <hr class="dropdown-divider">
                   </li>
                   <li><a class="dropdown-item" href="#">Reportes</a></li>
                 </ul>
               </li>
+              
+
                             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
                   Insumos
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="#">Inventario Insumos</a></li>
+                  <li><a class="dropdown-item" href="listInsumos.php">Inventario Insumos</a></li>
                   <li><a class="dropdown-item" href="#">Ordenes de Compra</a></li>
                   <li>
                     <hr class="dropdown-divider">
