@@ -9,5 +9,37 @@
     <title>TALLER TF</title>
 </head>
 <?php $contenido = ""; include 'layout/plantilla.blade.php';?>
+<div class="container mt-5">
+<?php
+        require_once 'conexion.php';
+        $conn = oci_connect(DB_USER, DB_PASSWORD, DB_HOST);
+            if (!$conn) {
+                $e = oci_error();
+                trigger_error(htmlentities($e['ERROR DE CONEXION'], ENT_QUOTES), E_USER_ERROR);
+            }
+    if (isset($_GET['id'])) {
+        $id_insumo = $_GET['id'];
 
+        $query = "DELETE FROM INSUMO WHERE ID_INSUMO = :id_insumo";
+        $stmt = oci_parse($conn, $query);
+
+        oci_bind_by_name($stmt, ':id_insumo', $id_insumo);
+
+        if (oci_execute($stmt)) {
+            echo "<div class='modal-dialog text-center'><div class='modal-content'><div class='container'><br>";
+            echo "<div class='alert alert-success' role='alert'>Se elimino el registro.</div><br>";
+            echo "<a href='listInsumos.php' class='btn btn-dark mb-3'>Regresar a Inventario de Insumos</a>";
+            echo "<br></div></div></div>"; 
+        } else {
+            $error = oci_error($stmt);
+            echo "<div class='alert alert-danger' role='alert'>Error al eliminar el registro" . $error['message'] . "</div>";
+        }
+        oci_free_statement($stmt);
+    } else {
+        echo "<div class='alert alert-danger' role='alert'>Error al obtener los datos.</div>";
+    }
+    oci_close($conn);
+    ?>
+
+</html>
 </html>

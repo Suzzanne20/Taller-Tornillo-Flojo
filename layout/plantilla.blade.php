@@ -40,14 +40,26 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="listMecanicos.php">Mecanicos</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="listMecanicos.php">Insumos</a>
-              </li>
+              </li>  
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+                  Insumos
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="listInsumos.php">Inventario Insumos</a></li>
+                  <li><a class="dropdown-item" href="listOcompra.php">Ordenes de Compra</a></li>
+                  <li><a class="dropdown-item" href="regOcompra.php">> Nueva Orden de Compra</a></li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li><a class="dropdown-item" href="proveedores.php">Proveedores</a></li>
+                </ul>
+              </li>              
               
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Ordenes de Servicio
+                  Ordenes de Servicio PENDIENTE
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark">
                   <li><a class="dropdown-item" href="listOservicios.php">Nueva Orden</a></li>
@@ -56,21 +68,6 @@
                     <hr class="dropdown-divider">
                   </li>
                   <li><a class="dropdown-item" href="#">Reportes</a></li>
-                </ul>
-              </li>
-              
-
-                            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
-                  Insumos
-                </a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="listInsumos.php">Inventario Insumos</a></li>
-                  <li><a class="dropdown-item" href="#">Ordenes de Compra</a></li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-                  <li><a class="dropdown-item" href="#">Proveedores</a></li>
                 </ul>
               </li>
             </ul>

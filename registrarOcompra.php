@@ -13,15 +13,14 @@
 <div class="container mt-5">
 <?php
     // Datos
-    $nombre = $_POST['nombre'];
-    $telefono = $_POST['telefono'];
-    $nit = $_POST['nit'];
-    $direccion = $_POST['direccion'];
+    $id_oc = $_POST['id_oc'];
+    $id_insumo = $_POST['id_insumo'];
+    $cant_insu = $_POST['cant_insu'];
+    $fecha= $_POST['fecha'];
+    $descri = $_POST['descri'];
+    $id_prov = $_POST['id_prov'];
+    $id_usuario = $_POST['id_usuario'];
 
-    if (empty($nombre) || empty($telefono) || empty($nit) || empty($direccion)) {
-        echo "<p>Por favor, complete todos los campos.</p>";
-        exit;
-}
         require_once 'conexion.php';//<---CONEXION BD
         $conn = oci_connect(DB_USER, DB_PASSWORD, DB_HOST);
             if (!$conn) {
@@ -29,19 +28,21 @@
                 trigger_error(htmlentities($e['ERROR DE CONEXION'], ENT_QUOTES), E_USER_ERROR);
             }
 
-    $query = "INSERT INTO CLIENTE (NOMBRE_CLI, TELEFONO, NIT, DIRECCION) VALUES (:nombre, :telefono, :nit, :direccion)";
-    $stmt = oci_parse($conn, $query);
-
-    oci_bind_by_name($stmt, ':nombre', $nombre);
-    oci_bind_by_name($stmt, ':telefono', $telefono);
-    oci_bind_by_name($stmt, ':nit', $nit);
-    oci_bind_by_name($stmt, ':direccion', $direccion);
+        $query = 'INSERT INTO ORDEN_COM (ID_OC, ID_INSUMO, CANT_INSU, FECHA, DESCRI, ID_PROV, ID_USUARIO) VALUES (:id_oc, :id_insumo, :cant_insu, :fecha, :descri, :id_prov, :id_usuario)';
+        $stmt = oci_parse($conn, $query);
+        oci_bind_by_name($stmt, ':id_oc', $id_oc);
+        oci_bind_by_name($stmt, ':id_insumo', $id_insumo);
+        oci_bind_by_name($stmt, ':cant_insu', $cant_insu);
+        oci_bind_by_name($stmt, ':fecha', $fecha);
+        oci_bind_by_name($stmt, ':descri', $descri);
+        oci_bind_by_name($stmt, ':id_prov', $id_prov);
+        oci_bind_by_name($stmt, ':id_usuario', $id_usuario);
 
     if (oci_execute($stmt)) {
-        echo "<div class='modal-dialog text-center'><div class='modal-content'><div class='container'><br>";  
+        echo "<div class='modal-dialog text-center'><div class='modal-content'><div class='container'><br>";      
         echo "<div class='alert alert-success' role='alert'>Se ha realizado el registro con éxito.</div>";
-        echo "<a href='listClientes.php' class='btn btn-dark mb-3'>Listado de Clientes</a>";
-        echo "<a href='regClientes.php' class='btn btn-primary mb-3'>Realizar otro Registro</a>";
+        echo "<a href='listOcompra.php' class='btn btn-dark mb-3'>Listado de Ordenes de Compra</a>";
+        echo "<a href='regOcompra.php' class='btn btn-primary mb-3'>Realizar otro Registro</a>";
         echo "<br></div></div></div>";
     } else {
         $error = oci_error($stmt);

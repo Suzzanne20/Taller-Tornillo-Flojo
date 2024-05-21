@@ -41,9 +41,11 @@
         oci_bind_by_name($stmt, ':id_oc', $id_oc);
 
     if (oci_execute($stmt)) {
+        echo "<div class='modal-dialog text-center'><div class='modal-content'><div class='container'><br>";      
         echo "<div class='alert alert-success' role='alert'>Se ha realizado el registro con éxito.</div>";
         echo "<a href='listInsumos.php' class='btn btn-dark mb-3'>Inventario de Insumos</a>";
         echo "<a href='regInsumos.php' class='btn btn-primary mb-3'>Realizar otro Registro</a>";
+        echo "<br></div></div></div>";
     } else {
         $error = oci_error($stmt);
         echo "<div class='alert alert-danger' role='alert'>Error al realizar el Registro " . $error['message'] . "</div>";
