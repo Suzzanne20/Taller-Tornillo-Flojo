@@ -12,7 +12,7 @@
 <body>
 <div class="container mt-5">
     <div class="modal-dialog"><div class="modal-content"><div class="container">
-    <h1>Registrar Mecánico</h1>
+    <h1>Registrar Mecánico</h1><br>
     <form action="registrarMecanico.php" method="post">
         <div class="form-group">
             <label for="nombre">Nombre</label>
