@@ -7,6 +7,59 @@
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <title>TALLER TF</title>
+    
+    <style>
+        .background {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-image: url('assets/fondot.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Negro con 50% de opacidad */
+        }
+
+        .content {
+            position: relative;
+            color: white;
+            text-align: center;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+                .button-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px; /* Espacio entre los botones */
+            justify-items: center;
+            margin-top: 20px;
+        }
+        .button-container button {
+            width: 400px; /* Ancho fijo para los botones */
+            height: 50px; /* Alto fijo para los botones */
+            padding: 10px 20px;
+            font-size: 20px;
+            border: none;
+            background-color: #007BFF; /* Color de fondo del botón */
+            color: white;
+            cursor: pointer;
+            border-radius: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .button-container button:hover {
+            background-color: #0056b3; /* Color de fondo del botón al pasar el ratón */
+        }
+
+    </style>
 </head>
 <body>
 <?php $contenido = ""; include 'layout/plantilla.blade.php';?>
