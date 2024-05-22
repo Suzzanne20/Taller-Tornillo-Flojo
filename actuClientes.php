@@ -35,7 +35,11 @@
         oci_bind_by_name($stmt, ':direccion', $direccion);
 
         if (oci_execute($stmt)) {
-            echo "<div class='alert alert-success' role='alert'>Se ha realizado la actualizacion de Datos</div>";
+                        echo "<div class='modal-dialog text-center'><div class='modal-content'><div class='container'><br>";
+                        echo "<div class='alert alert-success' role='alert'>Se ha realizado la actualización de datos correctamente.</div>";
+                        echo "<a href='listClientes.php' class='btn btn-dark mb-3'>Listado de Clientes</a>";
+                        echo "<a href='regClientes.php' class='btn btn-primary mb-3'>Realizar un Registro</a>";
+                        echo "<br></div></div></div>";
         } else {
             $error = oci_error($stmt);
             echo "<div class='alert alert-danger' role='alert'>Error al actualizar" . $error['message'] . "</div>";

@@ -26,9 +26,10 @@
         oci_bind_by_name($stmt, ':id_mec', $id_mec);
 
         if (oci_execute($stmt)) {
-            echo "<div class='alert alert-success' role='alert'>Se elimino el registro.</div>";
+            echo "<div class='modal-dialog text-center'><div class='modal-content'><div class='container'><br>";
+            echo "<div class='alert alert-success' role='alert'>Se elimino el registro.</div><br>";
             echo "<a href='listMecanicos.php' class='btn btn-dark mb-3'>Regresar a listado de Mecanicos</a>";
-            
+            echo "<br></div></div></div>"; 
         } else {
             $error = oci_error($stmt);
             echo "<div class='alert alert-danger' role='alert'>Error al eliminar el registro" . $error['message'] . "</div>";

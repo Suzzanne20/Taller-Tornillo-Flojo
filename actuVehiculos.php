@@ -32,7 +32,11 @@
         oci_bind_by_name($stmt, ':id_cliente', $id_cliente);
 
         if (oci_execute($stmt)) {
-            echo "<div class='alert alert-success' role='alert'>El vehículo ha sido actualizado con éxito.</div>";
+                        echo "<div class='modal-dialog text-center'><div class='modal-content'><div class='container'><br>";
+                        echo "<div class='alert alert-success' role='alert'>Se ha realizado la actualización de datos correctamente.</div>";
+                        echo "<a href='listVehiculos.php' class='btn btn-dark mb-3'>Listado de Vehiculos</a>";
+                        echo "<a href='regVehiculos.php' class='btn btn-primary mb-3'>Realizar un Registro</a>";
+                        echo "<br></div></div></div>";
         } else {
             $error = oci_error($stmt);
             echo "<div class='alert alert-danger' role='alert'>Error al actualizar el vehículo: " . $error['message'] . "</div>";

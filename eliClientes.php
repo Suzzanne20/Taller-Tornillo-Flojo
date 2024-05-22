@@ -27,8 +27,10 @@
         oci_bind_by_name($stmt, ':id_cliente', $id_cliente);
 
         if (oci_execute($stmt)) {
+            echo "<div class='modal-dialog text-center'><div class='modal-content'><div class='container'><br>";
             echo "<div class='alert alert-success' role='alert'>Se elimino el registro.</div>";
             echo "<a href='listClientes.php' class='btn btn-dark mb-3'>Regresar a listado de Clientes</a>";
+            echo "<br></div></div></div>"; 
         } else {
             $error = oci_error($stmt);
             echo "<div class='alert alert-danger' role='alert'>Error al eliminar el registro" . $error['message'] . "</div>";
