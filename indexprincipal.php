@@ -13,17 +13,18 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="{{ asset('assets/form.css') }}" rel="stylesheet">
 
-    <title>@yield('navplantilla')</title>
+    <title>Sistema para administradores</title>
 
    <nav class="navbar navbar-dark bg-primary fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="indexprincipal.php">
             <img src="assets/logo.jfif" alt="TF" width="50" height="50">
         </a>
-        <a class="navbar-brand" href="index.php">TALLER TORNILLO FLOJO</a>
+          <a class="navbar-brand text-center" href="indexprincipal.php"><h3>TALLER MECANICO EL TORNILLO SUELTO</h3></a>
         
-        <span> </span>
-
+        <span class="ml-auto">
+      <a class="btn btn-danger" href="login.php">Cerrar Sesión</a>
+    </span>
 
       </div>
     </nav> <br><br>
@@ -101,13 +102,13 @@
                  <a href="listClientes.php"><button>CLIENTES</button></a>
                  <a href="listVehiculos.php"><button>VEHICULOS</button></a>
                  <a href="listMecanicos.php"><button>MECANICOS</button></a>
-                <button>PROVEEDORES</button>
-                <button>INSUMOS</button>
-                <button>GENERAR ORDEN DE COMPRA</button>
-                <button>GENERAR ORDEN DE PAGO</button>
-                <button>REQUICISIONES</button>
-                <button>SERVICIOS</button>
-                <button>INFORMACION</button>
+                 <a href="proveedores.php"><button>PROVEEDORES</button></a>
+                 <a href="listinsumos.php"><button>INSUMOS</button></a>
+                 <a href="listOcompra.php"><button>ORDENES DE COMPRA</button></a>
+                 <a href="listOpago.php"><button>ORDENES DE PAGO</button></a>
+                 <a href="listrequi.php"><button>REQUICISIONES</button></a>
+                 <a href="listOservicios.php"><button>SERVICIOS</button></a>
+                 <a href="informacion.php"><button>INFORMACION</button></a>
             </div>
         </div>
     </div>

@@ -13,17 +13,18 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="{{ asset('assets/form.css') }}" rel="stylesheet">
 
-    <title>@yield('navplantilla')</title>
+    <title>Sistema para el personal</title>
 
    <nav class="navbar navbar-dark bg-primary fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="indexsecundario.php">
             <img src="assets/logo.jfif" alt="TF" width="50" height="50">
         </a>
-        <a class="navbar-brand" href="index.php">TALLER TORNILLO FLOJO</a>
+          <a class="navbar-brand text-center" href="indexsecundario.php"><h3>TALLER MECANICO EL TORNILLO SUELTO</h3></a>
         
-        <span> </span>
-
+        <span class="ml-auto">
+      <a class="btn btn-danger" href="login.php">Cerrar Sesión</a>
+    </span>
 
       </div>
     </nav> <br><br>
@@ -98,14 +99,14 @@
         <div class="content">
             <h1>BIENVENIDO AL SISTEMA OPERATIVO</h1>
              <div class="button-container">
-                 <a href="listClientes.php"><button>CLIENTES</button></a>
-                 <a href="listVehiculos.php"><button>VEHICULOS</button></a>
-                <button>INSUMOS</button>
+                <a href="listClientes.php"><button>CLIENTES</button></a>
+                <a href="listVehiculos.php"><button>VEHICULOS</button></a>
+                <a href="listinsumos.php"><button>INSUMOS</button></a>
                 <a href="indexprincipal.php"><button>SERVICIO</button></a>
-                <button>ORDENES DE COMPRA</button>
-                <button>ORDENES DE PAGO</button>
-                <button>REQUICISIONES</button>
-                <button>INFORMACION</button>
+                <a href="listOcompra.php"><button>ORDENES DE COMPRA</button></a>
+                <a href="listOpago.php"><button>ORDENES DE PAGO</button></a>
+                <a href="listrequi.php"><button>REQUICISIONES</button></a>
+                <a href="informacion.php"><button>INFORMACION</button></a>
             </div>
         </div>
     </div>

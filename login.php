@@ -1,73 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
-
-       
-    
+<html lang="es">
 <head>
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
 
-   <link rel="stylesheet" href="css/bootstrap.css">
-   <link rel="stylesheet" type="text/css" href="css/style.css">
-   <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
-   <!-- <link rel="stylesheet" href="css/all.min.css"> -->
-   <!-- <link rel="stylesheet" href="css/fontawesome.min.css"> -->
-   <link href="https://tresplazas.com/web/img/big_punto_de_venta.png" rel="shortcut icon">
-   <title>Inicio de sesión</title>
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('assets/fondol.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(5px); /* Aplicar el efecto de difuminado */
+          
+        }
+
+        .content {
+            position: relative;
+            
+            width: 100%;
+            max-width: 400px; /* Ancho máximo del contenedor de login */
+            padding: 20px;
+        }
+
+        .login-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%; /* Asegura que el contenedor de login use todo el ancho del contenedor de contenido */
+        }
+        
+            .login-container img {
+            width: 200px; /* Ajusta el tamaño según tus necesidades */
+            height: auto;
+            margin-bottom: 1px;
+            display: block; /* Para centrar horizontalmente la imagen */
+            margin-left: auto; /* Para centrar horizontalmente la imagen */
+            margin-right: auto; /* Para centrar horizontalmente la imagen */
+        }
+
+        .login-container h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
+        }
+
+        .login-container label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .login-container button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
-
 <body>
-   <img class="wave" src="img/wave.png">
-   <div class="container">
-      <div class="img">
-         <img src="img/bg.svg">
-      </div>
-      <div class="login-content">
-         <form method="post" action="">
-            <img src="img/avatar.svg">
-            <h2 class="title">BIENVENIDO</h2>
-            <?php
-            include("conexion.php");
-            include("controlador.php");
-            ?>
-            <div class="input-div one">
-               <div class="i">
-                  <i class="fas fa-user"></i>
-               </div>
-               <div class="div">
-                  <h5>Usuario</h5>
-                  <input id="usuario" type="text" class="input" name="usuario">
-               </div>
-            </div>
-            <div class="input-div pass">
-               <div class="i">
-                  <i class="fas fa-lock"></i>
-               </div>
-               <div class="div">
-                  <h5>Contraseña</h5>
-                  <input type="password" id="input" class="input" name="password">
-               </div>
-            </div>
-            <div class="view">
-               <div class="fas fa-eye verPassword" onclick="vista()" id="verPassword"></div>
-            </div>
-
-            <div class="text-center">
-               <a class="font-italic isai5" href="">Olvidé mi contraseña</a>
-               <a class="font-italic isai5" href="">Registrarse</a>
-            </div>
-            <input name="btningresar" class="btn" type="submit" value="INICIAR SESION">
-         </form>
-      </div>
-   </div>
-   <script src="js/fontawesome.js"></script>
-   <script src="js/main.js"></script>
-   <script src="js/main2.js"></script>
-   <script src="js/jquery.min.js"></script>
-   <script src="js/bootstrap.js"></script>
-   <script src="js/bootstrap.bundle.js"></script>
-
+    <div class="background"></div>
+    <div class="content">
+        <div class="login-container">
+            <img src="assets/logo.jfif"  alt="Logo">
+            <h2>Inicio de Sesión</h2>
+            <form action="controlador.php" method="POST">
+                <label for="username">Usuario:</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+        </div>
+    </div>
 </body>
-
 </html>
-
