@@ -3,12 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/Taller/regOcompra.php</file>
-            <file>file:/C:/xampp/htdocs/Taller/registrarOcompra.php</file>
-            <file>file:/C:/xampp/htdocs/Taller/indexprincipal.php</file>
-            <file>file:/C:/xampp/htdocs/Taller/layout/plantilla.blade.php</file>
-            <file>file:/C:/xampp/htdocs/Taller/listOcompra.php</file>
-            <file>file:/C:/xampp/htdocs/Taller/actuOcompra.php</file>
+            <file>file:/C:/xampp/htdocs/Taller/registrarOservicio.php</file>
+            <file>file:/C:/xampp/htdocs/Taller/actuOservicio.php</file>
             <file>file:/C:/xampp/htdocs/Taller/listOservicios.php</file>
             <file>file:/C:/xampp/htdocs/Taller/regOservicios.php</file>
         </group>
