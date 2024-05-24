@@ -41,11 +41,12 @@
                   Ordenes de Servicio
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="regOservicios.php">Nueva Orden</a></li>
+                  <li><a class="dropdown-item" href="regOservicios.php">>Nueva Orden</a></li>
                   <li><a class="dropdown-item" href="listOservicios.php">Listado de Ordenes</a></li>
                   <li>
                     <hr class="dropdown-divider">
                   </li>
+                  <li><a class="dropdown-item" href="listRequisiciones.php">Requisiciones</a></li>
                   <li><a class="dropdown-item" href="list">Ordenes de Pago</a></li>
                 </ul>
               </li>

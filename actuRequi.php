@@ -21,34 +21,28 @@
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Procesar la actualización
-        $id_servi = $_POST['id_servi'];
-        $fecha = $_POST['fecha'];
-        $descripcion = $_POST['descripcion'];
+        $insumo_id_insumo = $_POST['insumo_id_insumo'];
+        $servicio_id_servi = $_POST['servicio_id_servi'];
+        $servicio_id_usuario = $_POST['servicio_id_usuario'];
         $no_requi = $_POST['no_requi'];
-        $placa = $_POST['placa'];
-        $id_usuario = $_POST['id_usuario'];
-        $id_tserv = $_POST['id_tserv'];
-        $id_mec = $_POST['id_mec'];
-        $id_estado = $_POST['id_estado'];
+        $c_insu = $_POST['c_insu'];
 
-        $query = "UPDATE SERVICIO SET FECHA = :fecha, DESCRIPCION = :descripcion, NO_REQUI = :no_requi, PLACA = :placa, ID_USUARIO = :id_usuario, ID_TSERV = :id_tserv, ID_MEC = :id_mec, ID_ESTADO = :id_estado  WHERE ID_SERVI = :id_servi";
+                $query = 'INSERT INTO REQUI (INSUMO_ID_INSUMO, SERVICIO_ID_SERVI, SERVICIO_ID_USUARIO, NO_REQUI, C_INSU) 
+                  VALUES (:insumo_id_insumo, :servicio_id_servi, :servicio_id_usuario, :no_requi, :c_insu)';
+        
+        $query = "UPDATE REQUI SET INSUMO_ID_INSUMO = :fecha, SERVICIO_ID_SERVI = :descripcion, SERVICIO_ID_USUARIO = :no_requi, PLACA = :placa, ID_USUARIO = :id_usuario WHERE ID_SERVI = :id_servi";
         $stmt = oci_parse($conn, $query);
-
-        oci_bind_by_name($stmt, ':id_servi', $id_servi);
-        oci_bind_by_name($stmt, ':fecha', $fecha);
-        oci_bind_by_name($stmt, ':descripcion', $descripcion);
+        oci_bind_by_name($stmt, ':insumo_id_insumo', $insumo_id_insumo);
+        oci_bind_by_name($stmt, ':servicio_id_servi', $servicio_id_servi);
+        oci_bind_by_name($stmt, ':servicio_id_usuario', $servicio_id_usuario);
         oci_bind_by_name($stmt, ':no_requi', $no_requi);
-        oci_bind_by_name($stmt, ':placa', $placa);
-        oci_bind_by_name($stmt, ':id_usuario', $id_usuario);
-        oci_bind_by_name($stmt, ':id_tserv', $id_tserv);
-        oci_bind_by_name($stmt, ':id_mec', $id_mec);
-        oci_bind_by_name($stmt, ':id_estado', $id_estado);
+        oci_bind_by_name($stmt, ':c_insu', $c_insu);
 
         if (oci_execute($stmt)) {
             echo "<div class='modal-dialog text-center'><div class='modal-content'><div class='container'><br>";
             echo "<div class='alert alert-success' role='alert'>Se ha realizado la actualización de datos correctamente.</div>";
-            echo "<a href='listOservicios.php' class='btn btn-dark mb-3'>Listado de Ordenes de Servicio</a>";
-            echo "<a href='regOservicios.php' class='btn btn-primary mb-3'>Registrar una Orden de Servicio</a>";
+            echo "<a href='listRequisiciones.php' class='btn btn-dark mb-3'>Listado de Requisiciones</a>";
+            echo "<a href='regRequi.php' class='btn btn-primary mb-3'>Nueva Requisicion</a>";
             echo "<br></div></div></div>";
         } else {
             $error = oci_error($stmt);
