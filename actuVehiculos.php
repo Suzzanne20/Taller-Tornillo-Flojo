@@ -23,7 +23,7 @@
         $kilometraje = $_POST['kilometraje'];
         $id_cliente = $_POST['id_cliente'];
 
-        $query = "UPDATE VEHICULO SET MARCA = :marca, KILOMETRAJE = :kilometraje, ID_CLIENTE = :id_cliente WHERE PLACA = :placa";
+        $query = "UPDATE VEHICULO SET PLACA= :placa, MARCA = :marca, KILOMETRAJE = :kilometraje, ID_CLIENTE = :id_cliente WHERE PLACA = :placa";
         $stmt = oci_parse($conn, $query);
 
         oci_bind_by_name($stmt, ':placa', $placa);
