@@ -32,10 +32,10 @@
         //-------------------------------BARRA DE BUSQUEDA        
         $search = isset($_GET['search']) ? $_GET['search'] : '';
 
-        $query = "SELECT R.INSUMO_ID_INSUMO, I.NOMBRE_I, R.SERVICIO_ID_SERVI, S.PLACA, R.SERVICIO_ID_USUARIO, R.NO_REQUI, R.C_INSU
+        $query = "SELECT R.ID_INSUMO, I.NOMBRE_I, R.ID_SERVI, S.PLACA, R.ID_USUARIO, R.NO_REQUI, R.C_INSU
                   FROM REQUI R
-                  JOIN INSUMO I ON R.INSUMO_ID_INSUMO = I.ID_INSUMO
-                  JOIN SERVICIO S ON R.SERVICIO_ID_SERVI = S.ID_SERVI";
+                  JOIN INSUMO I ON R.ID_INSUMO = I.ID_INSUMO
+                  JOIN SERVICIO S ON R.ID_SERVI = S.ID_SERVI";
         if (!empty($search)) {
             $query .= " WHERE I.NOMBRE_I LIKE '%' || :search || '%'";
         }
@@ -67,12 +67,12 @@
         while ($row = oci_fetch_array($stmt, OCI_ASSOC+OCI_RETURN_NULLS)) {
             echo "<tr>";
                 echo "<td>" . $row['NO_REQUI'] . "</td>";
-                echo "<td>" . $row['INSUMO_ID_INSUMO'] . "</td>";
+                echo "<td>" . $row['ID_INSUMO'] . "</td>";
                 echo "<td>" . $row['NOMBRE_I'] . "</td>";
                 echo "<td>" . $row['C_INSU'] . "</td>";
-                echo "<td>" . $row['SERVICIO_ID_SERVI'] . "</td>";
+                echo "<td>" . $row['ID_SERVI'] . "</td>";
                 echo "<td>" . $row['PLACA'] . "</td>";
-                echo "<td>" . $row['SERVICIO_ID_USUARIO'] . "</td>";
+                echo "<td>" . $row['ID_USUARIO'] . "</td>";
             echo "<td>
                 <a href='actuRequi.php?id=" . $row['NO_REQUI'] . "' class='btn btn-primary btn-sm'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill=.'currentColor' class='bi bi-pencil-square' viewBox='0 0 16 16'>
                 <path d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z'/>

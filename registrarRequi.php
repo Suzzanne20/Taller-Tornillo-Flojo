@@ -13,9 +13,9 @@
 <div class="container mt-5">
 <?php
         // Datos
-        $insumo_id_insumo = $_POST['insumo_id_insumo'];
-        $servicio_id_servi = $_POST['servicio_id_servi'];
-        $servicio_id_usuario = $_POST['servicio_id_usuario'];
+        $id_insumo = $_POST['id_insumo'];
+        $id_servi = $_POST['id_servi'];
+        $id_usuario = $_POST['id_usuario'];
         $no_requi = $_POST['no_requi'];
         $c_insu = $_POST['c_insu'];
 
@@ -26,12 +26,12 @@
                 trigger_error(htmlentities($e['ERROR DE CONEXION'], ENT_QUOTES), E_USER_ERROR);
             }
 
-        $query = 'INSERT INTO REQUI (INSUMO_ID_INSUMO, SERVICIO_ID_SERVI, SERVICIO_ID_USUARIO, NO_REQUI, C_INSU) 
-                  VALUES (:insumo_id_insumo, :servicio_id_servi, :servicio_id_usuario, :no_requi, :c_insu)';
+        $query = 'INSERT INTO REQUI (ID_INSUMO, ID_SERVI, ID_USUARIO, NO_REQUI, C_INSU) 
+                  VALUES (:id_insumo, :id_servi, :id_usuario, :no_requi, :c_insu)';
         $stmt = oci_parse($conn, $query);
-        oci_bind_by_name($stmt, ':insumo_id_insumo', $insumo_id_insumo);
-        oci_bind_by_name($stmt, ':servicio_id_servi', $servicio_id_servi);
-        oci_bind_by_name($stmt, ':servicio_id_usuario', $servicio_id_usuario);
+        oci_bind_by_name($stmt, ':id_insumo', $id_insumo);
+        oci_bind_by_name($stmt, ':id_servi', $id_servi);
+        oci_bind_by_name($stmt, ':id_usuario', $id_usuario);
         oci_bind_by_name($stmt, ':no_requi', $no_requi);
         oci_bind_by_name($stmt, ':c_insu', $c_insu);
 
