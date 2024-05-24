@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link href="layout/Fondos.css" rel="stylesheet"> <!-- FONDOOOO -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <title>Ordenes de Servicios</title>
 </head>
@@ -12,7 +13,15 @@
 <?php $contenido = ""; include 'layout/plantilla.blade.php';?>
 
 <div class="container mt-5">
-    <a href="regOservicios.php" class="btn btn-dark mb-3">Nueva Orden de Servicio</a>
+    <div class="container"><div class="row justify-content-between">
+        <div class="col-4"><a href="regOservicios.php" class="btn btn-secondary">Nueva Orden de Servicio</a></div>
+        <div class="col-4">
+          <form method="GET" action="listOservicios.php" class="mb-3">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Buscar por placa" value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+                <button type="submit" class="btn btn-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/></svg></button>
+            </div></form></div></div></div>  
         <?php
         require_once 'conexion.php';//<---------------------CONEXION BD 
         $conn = oci_connect(DB_USER, DB_PASSWORD, DB_HOST);
@@ -20,18 +29,35 @@
                 $e = oci_error();
                 trigger_error(htmlentities($e['ERROR DE CONEXION'], ENT_QUOTES), E_USER_ERROR);
             }else {
-        //<------------------------------REFERENCIA A LA TABLA DE LA BD                  
+        //-------------------------------BARRA DE BUSQUEDA        
+        $search = isset($_GET['search']) ? $_GET['search'] : '';
+
+        $query = "SELECT S.ID_SERVI, S.FECHA, S.DESCRIPCION, S.NO_REQUI, S.PROX_SERV, S.PLACA, S.ID_USUARIO, TS.NOMBRE_SERV, ME.NOMBRE_MEC 
+                  FROM SERVICIO S
+                  JOIN TIPO_SERV TS ON S.ID_TSERV = TS.ID_TSERV
+                  JOIN MECANICO ME ON S.ID_MEC = ME.ID_MEC";
+        if (!empty($search)) {
+            $query .= " WHERE S.PLACA LIKE '%' || :search || '%'";
+        }
+        $query .= " ORDER BY S.ID_SERVI ASC";
+        $stmt = oci_parse($conn, $query);
+
+        if (!empty($search)) {
+            oci_bind_by_name($stmt, ':search', $search);
+        }
+        oci_execute($stmt);                        
+        /*<------------------------------REFERENCIA A LA TABLA DE LA BD                  
         $query = "SELECT S.ID_SERVI, S.FECHA, S.DESCRIPCION, S.NO_REQUI, S.PROX_SERV, S.PLACA, S.ID_USUARIO, TS.NOMBRE_SERV, ME.NOMBRE_MEC 
                   FROM SERVICIO S
                   JOIN TIPO_SERV TS ON S.ID_TSERV = TS.ID_TSERV
                   JOIN MECANICO ME ON S.ID_MEC = ME.ID_MEC
                   ORDER BY S.ID_SERVI ASC";//<ordenar por ID ascendente
         $stmt = oci_parse($conn, $query);
-        oci_execute($stmt);
+        oci_execute($stmt);*/
         //--------------------------------------------------------------
-        echo "<h1>Ordenes de Servicio</h1>";
-        echo "<table class='table table-dark table-hover'>
-            <thead>
+        echo "<h1 style='color: white;'>Ordenes de Servicio</h1>";
+        echo "<table class='table table-striped table-hover'>
+            <thead class='table-dark'>
                 <tr>
                     <th>ID Orden</th>
                     <th>Fecha</th>
@@ -79,5 +105,4 @@
         ?>
 </div>
 
-</body>
 </html>

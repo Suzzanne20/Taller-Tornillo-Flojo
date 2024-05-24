@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link href="layout/Fondos.css" rel="stylesheet"> <!-- FONDOOOO -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <title>Mecanicos</title>
 </head>
@@ -12,7 +13,15 @@
 <?php $contenido = ""; include 'layout/plantilla.blade.php';?>
 
 <div class="container mt-5">
-    <a href="regVehiculos.php" class="btn btn-dark mb-3">Nuevo Registro</a>
+    <div class="container"><div class="row justify-content-between">
+        <div class="col-4"><a href="regVehiculos.php" class="btn btn-secondary">Nuevo Registroo</a></div>
+        <div class="col-4">
+          <form method="GET" action="listVehiculos.php" class="mb-3">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Buscar por placa" value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+                <button type="submit" class="btn btn-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/></svg></button>
+            </div></form></div></div></div> 
         <?php
         require_once 'conexion.php';
         $conn = oci_connect(DB_USER, DB_PASSWORD, DB_HOST);
@@ -20,18 +29,26 @@
                 $e = oci_error();
                 trigger_error(htmlentities($e['ERROR DE CONEXION'], ENT_QUOTES), E_USER_ERROR);
             }else {
+        //-------------------------------BARRA DE BUSQUEDA        
+        $search = isset($_GET['search']) ? $_GET['search'] : '';
+
         $query = "SELECT V.PLACA, V.MARCA, V.KILOMETRAJE, V.ID_CLIENTE, C.NOMBRE_CLI
-          FROM VEHICULO V
-          JOIN CLIENTE C ON V.ID_CLIENTE = C.ID_CLIENTE
-          ORDER BY V.ID_CLIENTE ASC";
-
+                FROM VEHICULO V
+                JOIN CLIENTE C ON V.ID_CLIENTE = C.ID_CLIENTE";
+        if (!empty($search)) {
+            $query .= " WHERE V.PLACA LIKE '%' || :search || '%'";
+        }
+        $query .= " ORDER BY V.PLACA ASC";
         $stmt = oci_parse($conn, $query);
-        oci_execute($stmt);
 
-        // Mostrar los datos de la tabla MECANICO
-        echo "<h1>Listado de Vehiculos</h1>";
-        echo "<table class='table table-dark table-hover'>
-            <thead>
+        if (!empty($search)) {
+            oci_bind_by_name($stmt, ':search', $search);
+        }
+        oci_execute($stmt);
+        //--------------------------------------------------------------
+        echo "<h1 style='color: white;'>Listado de Vehiculos</h1>";
+        echo "<table class='table table-striped table-hover'>
+            <thead class='table-dark'>
                 <tr>
                     <th>Placa</th>
                     <th>Marca</th>
