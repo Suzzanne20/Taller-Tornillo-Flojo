@@ -15,8 +15,8 @@
     <h1>Nueva Requisicion</h1><br>
                 <form action="registrarRequi.php" method="post">
                     <div class="input-group mb-3">
-                        <label class="input-group-text col-5" for="insumo_id_insumo">Insumo</label>
-                        <select class="form-select" id="insumo_id_insumo" name="insumo_id_insumo" required>
+                        <label class="input-group-text col-5" for="id_insumo">Insumo</label>
+                        <select class="form-select" id="id_insumo" name="id_insumo" required>
                             <?php                                                      
                                 require_once 'conexion.php';
                                 $conn = oci_connect(DB_USER, DB_PASSWORD, DB_HOST);
@@ -37,8 +37,8 @@
                         </select>
                     </div>
                     <div class="input-group mb-3">
-                        <label class="input-group-text col-5" for="servicio_id_servi">Orden de Servicio</label>
-                        <select class="form-select" id="servicio_id_servi" name="servicio_id_servi" required>
+                        <label class="input-group-text col-5" for="id_servi">Orden de Servicio</label>
+                        <select class="form-select" id="id_servi" name="id_servi" required>
                             <?php
                                 $query = "SELECT ID_SERVI, PLACA FROM SERVICIO ORDER BY ID_SERVI ASC";
                                 $stmt = oci_parse($conn, $query);
@@ -51,8 +51,8 @@
                         </select>
                     </div>
                     <div class="input-group mb-3">
-                        <label class="input-group-text col-5" for="servicio_id_usuario">ID Usuario</label>
-                        <select class="form-select" id="servicio_id_usuario" name="servicio_id_usuario" required>
+                        <label class="input-group-text col-5" for="id_usuario">ID Usuario</label>
+                        <select class="form-select" id="id_usuario" name="id_usuario" required>
                             <?php
                                 $query = "SELECT ID_USUARIO, NOMBRE_U FROM USUARIO ORDER BY NOMBRE_U ASC";
                                 $stmt = oci_parse($conn, $query);

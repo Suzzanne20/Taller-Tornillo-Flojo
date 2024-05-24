@@ -118,7 +118,7 @@
                         <h3 class="card-title">Servicios</h3>
                         <a href="listOservicios.php" class="btn btn-dark mb-3">Ordenes de Servicio</a>
                         <a href="regOservicios.php" class="btn btn-dark mb-3">Nueva Orden de Servicio</a>
-                        <a href="listRequi.php" class="btn btn-dark mb-3">Requisiciones</a>
+                        <a href="listRequisiciones.php" class="btn btn-dark mb-3">Requisiciones</a>
                         <a href="listOpagos.php" class="btn btn-dark mb-3">Ordenes de Pago</a>
                         </div>
                     </div>
