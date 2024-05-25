@@ -13,10 +13,10 @@
 <div class="container mt-5">
 <?php
     // Datos
-    $nombre = $_POST['nombre'];
+    $nombre_mec = $_POST['nombre_mec'];
     $especialidad = $_POST['especialidad'];
 
-    if (empty($nombre) || empty($especialidad)) {
+    if (empty($nombre_mec) || empty($especialidad)) {
         echo "<p>Por favor, complete todos los campos.</p>";
         exit;
 }
@@ -27,10 +27,10 @@
                 trigger_error(htmlentities($e['ERROR DE CONEXION'], ENT_QUOTES), E_USER_ERROR);
             }
 
-        $query = "INSERT INTO MECANICO (NOMBRE_MEC, ESPECIALIDAD) VALUES (:nombre, :especialidad)";
+        $query = "INSERT INTO MECANICO (NOMBRE_MEC, ESPECIALIDAD) VALUES (:nombre_mec, :especialidad)";
         $stmt = oci_parse($conn, $query);
 
-        oci_bind_by_name($stmt, ':nombre', $nombre);
+        oci_bind_by_name($stmt, ':nombre_mec', $nombre_mec);
         oci_bind_by_name($stmt, ':especialidad', $especialidad);
 
     if (oci_execute($stmt)) {

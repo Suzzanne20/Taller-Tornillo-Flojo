@@ -27,7 +27,7 @@
                     $id_prov = $_POST['id_prov'];
                     $id_usuario = $_POST['id_usuario'];
 
-                    $query = "UPDATE ORDEN_COM SET ID_INSUMO = :id_insumo, CANT_INSU = :cant_insu, FECHA = :fecha, DESCRI = :descri, ID_PROV = :id_prov, ID_USUARIO = :id_usuario WHERE ID_OC = :id_oc";
+                    $query = "UPDATE ORDEN_COM SET ID_OC = :id_oc, ID_INSUMO = :id_insumo, CANT_INSU = :cant_insu, FECHA = :fecha, DESCRI = :descri, ID_PROV = :id_prov, ID_USUARIO = :id_usuario WHERE ID_OC = :id_oc";
                     $stmt = oci_parse($conn, $query);
 
                     oci_bind_by_name($stmt, ':id_oc', $id_oc);
@@ -103,7 +103,7 @@
                 </div>
                     <?php
                     } else {
-                        echo "<div class='alert alert-danger' role='alert'>No se encontró el insumo con ID $id_insumo.</div>";
+                        echo "<div class='alert alert-danger' role='alert'>No se encontró la orden de compra ID $id_oc.</div>";
                     }
 
                     oci_free_statement($stmt);

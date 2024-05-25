@@ -24,11 +24,11 @@
                     $costo = $_POST['costo'];
                     $stock = $_POST['stock'];
                     $mini = $_POST['mini'];
-                    $id_tipo = $_POST['id_tipo'];
                     $descri_i = $_POST['descri_i'];
-                    $id_oc = $_POST['id_oc'];
+                    $id_tipo = $_POST['id_tipo'];
 
-                    $query = "UPDATE INSUMO SET NOMBRE_I = :nombre_i, COSTO = :costo, STOCK = :stock, MINI = :mini, ID_TIPO = :id_tipo, DESCRI_I = :descri_i, ID_OC = :id_oc WHERE ID_INSUMO = :id_insumo";
+
+                    $query = "UPDATE INSUMO SET NOMBRE_I = :nombre_i, COSTO = :costo, STOCK = :stock, MINI = :mini, DESCRI_I = :descri_i, ID_TIPO = :id_tipo WHERE ID_INSUMO = :id_insumo";
                     $stmt = oci_parse($conn, $query);
 
                     oci_bind_by_name($stmt, ':id_insumo', $id_insumo);
@@ -36,9 +36,8 @@
                     oci_bind_by_name($stmt, ':costo', $costo);
                     oci_bind_by_name($stmt, ':stock', $stock);
                     oci_bind_by_name($stmt, ':mini', $mini);
-                    oci_bind_by_name($stmt, ':id_tipo', $id_tipo);
                     oci_bind_by_name($stmt, ':descri_i', $descri_i);
-                    oci_bind_by_name($stmt, ':id_oc', $id_oc);
+                    oci_bind_by_name($stmt, ':id_tipo', $id_tipo);
 
                     if (oci_execute($stmt)) {
                         echo "<div class='modal-dialog text-center'><div class='modal-content'><div class='container'><br>";
@@ -54,7 +53,7 @@
                 } else {
                     $id_insumo = $_GET['id'];
 
-                    $query = "SELECT ID_INSUMO, NOMBRE_I, COSTO, STOCK, MINI, ID_TIPO, DESCRI_I, ID_OC FROM INSUMO WHERE ID_INSUMO = :id_insumo";
+                    $query = "SELECT ID_INSUMO, NOMBRE_I, COSTO, STOCK, MINI, DESCRI_I, ID_TIPO FROM INSUMO WHERE ID_INSUMO = :id_insumo";
                     $stmt = oci_parse($conn, $query);
                     oci_bind_by_name($stmt, ':id_insumo', $id_insumo);
                     oci_execute($stmt);
@@ -84,6 +83,10 @@
                                 <label for="mini">Mínimo</label>
                                 <input type="number" class="form-control" id="mini" name="mini" value="<?php echo $row['MINI']; ?>" required>
                             </div>
+                            <div class="form-group">
+                                <label for="descri_i">Descripción</label>
+                                <input type="text" class="form-control" id="descri_i" name="descri_i" value="<?php echo $row['DESCRI_I']; ?>" required>
+                            </div>
                             <div class="input-group mb-3">
                                 <label class="input-group-text" for="id_tipo">Tipo de Insumo</label>
                                 <select class="form-select" id="id_tipo" name="id_tipo" required>
@@ -92,14 +95,6 @@
                                     <option value="3" <?php echo ($row['ID_TIPO'] == 3) ? 'selected' : ''; ?>>Repuesto</option>
                                     <option value="4" <?php echo ($row['ID_TIPO'] == 4) ? 'selected' : ''; ?>>Consumible</option>
                                 </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="descri_i">Descripción</label>
-                                <input type="text" class="form-control" id="descri_i" name="descri_i" value="<?php echo $row['DESCRI_I']; ?>" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="id_oc">ID OC</label>
-                                <input type="number" class="form-control" id="id_oc" name="id_oc" value="<?php echo $row['ID_OC']; ?>" required>
                             </div>
                             <button type="submit" class="btn btn-primary">Actualizar Insumo</button>
                         </form>

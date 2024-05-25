@@ -24,20 +24,20 @@
         $id_servi = $_POST['id_servi'];
         $fecha = $_POST['fecha'];
         $descripcion = $_POST['descripcion'];
-        $no_requi = $_POST['no_requi'];
+        $prox_serv = $_POST['prox_serv'];
         $placa = $_POST['placa'];
         $id_usuario = $_POST['id_usuario'];
         $id_tserv = $_POST['id_tserv'];
         $id_mec = $_POST['id_mec'];
         $id_estado = $_POST['id_estado'];
 
-        $query = "UPDATE SERVICIO SET FECHA = :fecha, DESCRIPCION = :descripcion, NO_REQUI = :no_requi, PLACA = :placa, ID_USUARIO = :id_usuario, ID_TSERV = :id_tserv, ID_MEC = :id_mec, ID_ESTADO = :id_estado  WHERE ID_SERVI = :id_servi";
+        $query = "UPDATE SERVICIO SET FECHA = :fecha, DESCRIPCION = :descripcion, PROX_SERV = :prox_serv, PLACA = :placa, ID_USUARIO = :id_usuario, ID_TSERV = :id_tserv, ID_MEC = :id_mec, ID_ESTADO = :id_estado  WHERE ID_SERVI = :id_servi";
         $stmt = oci_parse($conn, $query);
 
         oci_bind_by_name($stmt, ':id_servi', $id_servi);
         oci_bind_by_name($stmt, ':fecha', $fecha);
         oci_bind_by_name($stmt, ':descripcion', $descripcion);
-        oci_bind_by_name($stmt, ':no_requi', $no_requi);
+        oci_bind_by_name($stmt, ':prox_serv', $prox_serv);
         oci_bind_by_name($stmt, ':placa', $placa);
         oci_bind_by_name($stmt, ':id_usuario', $id_usuario);
         oci_bind_by_name($stmt, ':id_tserv', $id_tserv);
@@ -59,7 +59,7 @@
 
         $id_servi = $_GET['id'];
 
-        $query = "SELECT ID_SERVI, FECHA, DESCRIPCION, NO_REQUI, PLACA, ID_USUARIO, ID_TSERV, ID_MEC, ID_ESTADO FROM SERVICIO WHERE ID_SERVI = :id_servi";
+        $query = "SELECT ID_SERVI, FECHA, DESCRIPCION, PROX_SERV, PLACA, ID_USUARIO, ID_TSERV, ID_MEC, ID_ESTADO FROM SERVICIO WHERE ID_SERVI = :id_servi";
         $stmt = oci_parse($conn, $query);
         oci_bind_by_name($stmt, ':id_servi', $id_servi);
         oci_execute($stmt);
@@ -94,8 +94,8 @@
                         </div>
                         <div><label>Insumos</label><br>
                             <div class="input-group mb-3">
-                                <span class="input-group-text">Ingrese # de Requisición</span>
-                                <input type="number" class="form-control" id="no_requi" name="no_requi" value="<?php echo $row['NO_REQUI']; ?>">
+                                <span class="input-group-text">Prox. Servicio</span>
+                                <input type="number" class="form-control" id="prox_serv" name="prox_serv" value="<?php echo $row['PROX_SERV']; ?>">
                             </div>
                         </div>
                         <div class="input-group mb-3">

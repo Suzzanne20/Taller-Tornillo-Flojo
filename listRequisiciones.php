@@ -32,7 +32,7 @@
         //-------------------------------BARRA DE BUSQUEDA        
         $search = isset($_GET['search']) ? $_GET['search'] : '';
 
-        $query = "SELECT R.ID_INSUMO, I.NOMBRE_I, R.ID_SERVI, S.PLACA, R.ID_USUARIO, R.NO_REQUI, R.C_INSU
+        $query = "SELECT R.NO_REQUI, R.C_INSU, R.ID_SERVI, R.ID_INSUMO, I.NOMBRE_I, S.PLACA
                   FROM REQUI R
                   JOIN INSUMO I ON R.ID_INSUMO = I.ID_INSUMO
                   JOIN SERVICIO S ON R.ID_SERVI = S.ID_SERVI";
@@ -58,7 +58,6 @@
                     <th>Cantidad</th>
                     <th>Orden de Serv.</th>
                     <th>Vehiculo</th>
-                    <th>Usuario</th>
                     <th>Acciones   </th>
                 </tr>
             </thead>
@@ -72,7 +71,6 @@
                 echo "<td>" . $row['C_INSU'] . "</td>";
                 echo "<td>" . $row['ID_SERVI'] . "</td>";
                 echo "<td>" . $row['PLACA'] . "</td>";
-                echo "<td>" . $row['ID_USUARIO'] . "</td>";
             echo "<td>
                 <a href='actuRequi.php?id=" . $row['NO_REQUI'] . "' class='btn btn-primary btn-sm'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill=.'currentColor' class='bi bi-pencil-square' viewBox='0 0 16 16'>
                 <path d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z'/>

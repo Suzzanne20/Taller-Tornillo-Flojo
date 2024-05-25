@@ -32,7 +32,7 @@
         //-------------------------------BARRA DE BUSQUEDA        
         $search = isset($_GET['search']) ? $_GET['search'] : '';
 
-        $query = "SELECT I.ID_INSUMO, I.NOMBRE_I, I.COSTO, I.STOCK, I.MINI, TI.T_INSU, I.DESCRI_I, I.ID_OC 
+        $query = "SELECT I.ID_INSUMO, I.NOMBRE_I, I.COSTO, I.STOCK, I.MINI, I.DESCRI_I, TI.T_INSU
                   FROM INSUMO I
                   JOIN TIPO_INSU TI ON I.ID_TIPO = TI.ID_TIPO";
         if (!empty($search)) {
@@ -55,9 +55,8 @@
                     <th>Costo</th>
                     <th>Stock</th>
                     <th>Mínimo</th>
-                    <th>Tipo</th>
                     <th>Descripción</th>
-                    <th>ID OC</th>
+                    <th>Tipo</th>
                     <th>Acciones   </th>
                 </tr>
             </thead>
@@ -70,9 +69,9 @@
             echo "<td>" . $row['COSTO'] . "</td>";
             echo "<td>" . $row['STOCK'] . "</td>";
             echo "<td>" . $row['MINI'] . "</td>";
-            echo "<td>" . $row['T_INSU'] . "</td>";
             echo "<td>" . $row['DESCRI_I'] . "</td>";
-            echo "<td>" . $row['ID_OC'] . "</td>";
+            echo "<td>" . $row['T_INSU'] . "</td>";
+            
             echo "<td>
                 <a href='actuInsumos.php?id=" . $row['ID_INSUMO'] . "' class='btn btn-primary btn-sm'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill=.'currentColor' class='bi bi-pencil-square' viewBox='0 0 16 16'>
                 <path d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z'/>

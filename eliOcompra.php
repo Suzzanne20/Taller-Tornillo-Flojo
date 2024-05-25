@@ -22,7 +22,7 @@
 
         $query = "DELETE FROM ORDEN_COM WHERE ID_OC = :id_oc";
         $stmt = oci_parse($conn, $query);
-
+ 
         oci_bind_by_name($stmt, ':id_oc', $id_oc);
 
         if (oci_execute($stmt)) {

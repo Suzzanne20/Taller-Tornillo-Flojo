@@ -24,15 +24,13 @@
         $no_requi = $_POST['no_requi'];
         $id_insumo = $_POST['id_insumo'];
         $id_servi = $_POST['id_servi'];
-        $id_usuario = $_POST['id_usuario'];
         $c_insu = $_POST['c_insu'];
     
-        $query = "UPDATE REQUI SET ID_INSUMO = :id_insumo, ID_SERVI = :id_servi, ID_USUARIO = :id_usuario, NO_REQUI = :no_requi, C_INSU = :c_insu WHERE NO_REQUI = :no_requi";
+        $query = "UPDATE REQUI SET ID_INSUMO = :id_insumo, ID_SERVI = :id_servi, NO_REQUI = :no_requi, C_INSU = :c_insu WHERE NO_REQUI = :no_requi";
         $stmt = oci_parse($conn, $query);
         oci_bind_by_name($stmt, ':no_requi', $no_requi);
         oci_bind_by_name($stmt, ':id_insumo', $id_insumo);
         oci_bind_by_name($stmt, ':id_servi', $id_servi);
-        oci_bind_by_name($stmt, ':id_usuario', $id_usuario);
         oci_bind_by_name($stmt, ':c_insu', $c_insu);
 
         if (oci_execute($stmt)) {
@@ -50,7 +48,7 @@
 
         $no_requi = $_GET['id'];
 
-        $query = "SELECT ID_INSUMO, ID_SERVI, ID_USUARIO, NO_REQUI, C_INSU FROM REQUI WHERE NO_REQUI = :no_requi";
+        $query = "SELECT NO_REQUI, C_INSU, ID_SERVI, ID_INSUMO FROM REQUI WHERE NO_REQUI = :no_requi";
         $stmt = oci_parse($conn, $query);
         oci_bind_by_name($stmt, ':no_requi', $no_requi);
         oci_execute($stmt);
@@ -64,10 +62,6 @@
         $ordenes_query = 'SELECT ID_SERVI, PLACA FROM SERVICIO';
         $ordenes_stmt = oci_parse($conn, $ordenes_query);
         oci_execute($ordenes_stmt);
-        
-        $usuarios_query = 'SELECT ID_USUARIO, NOMBRE_U FROM USUARIO';
-        $usuarios_stmt = oci_parse($conn, $usuarios_query);
-        oci_execute($usuarios_stmt);
 
         if ($row) {
 ?>
@@ -75,15 +69,8 @@
     <h1>Actualización Requisición</h1><br>
                     <form action="actuRequi.php" method="post">
                         <div class="input-group mb-3">
-                            <label class="input-group-text col-5" for="id_insumo">Insumo</label>
-                            <select class="form-select" id="id_insumo" name="id_insumo" required>
-                                <?php
-                                while ($insumo = oci_fetch_array($insumos_stmt, OCI_ASSOC)) {
-                                    $selected = ($insumo['ID_INSUMO'] == $row['ID_INSUMO']) ? 'selected' : '';
-                                    echo "<option value='" . $insumo['ID_INSUMO'] . "' $selected>" . $insumo['NOMBRE_I'] . "</option>";
-                                }
-                                ?>
-                            </select>
+                            <span class="input-group-text col-5">No. de Requisición</span>
+                            <input type="number" step="0.01" class="form-control" id="no_requi" name="no_requi" value="<?php echo $row['NO_REQUI']; ?>" required>
                         </div>
                         <div class="input-group mb-3">
                             <label class="input-group-text col-5" for="id_servi">Orden de Servicio</label>
@@ -97,19 +84,15 @@
                             </select>
                         </div>
                         <div class="input-group mb-3">
-                            <label class="input-group-text col-5" for="id_usuario">ID Usuario</label>
-                            <select class="form-select" id="id_usuario" name="id_usuario" required>
+                            <label class="input-group-text col-5" for="id_insumo">Insumo</label>
+                            <select class="form-select" id="id_insumo" name="id_insumo" required>
                                 <?php
-                                while ($usuario = oci_fetch_array($usuarios_stmt, OCI_ASSOC)) {
-                                    $selected = ($usuario['ID_USUARIO'] == $row['ID_USUARIO']) ? 'selected' : '';
-                                    echo "<option value='" . $usuario['ID_USUARIO'] . "' $selected>" . $usuario['ID_USUARIO'] .' - ' . $usuario['NOMBRE_U'] . "</option>";
+                                while ($insumo = oci_fetch_array($insumos_stmt, OCI_ASSOC)) {
+                                    $selected = ($insumo['ID_INSUMO'] == $row['ID_INSUMO']) ? 'selected' : '';
+                                    echo "<option value='" . $insumo['ID_INSUMO'] . "' $selected>" . $insumo['NOMBRE_I'] . "</option>";
                                 }
                                 ?>
                             </select>
-                        </div>                  
-                        <div class="input-group mb-3">
-                            <span class="input-group-text col-5">No. de Requisición</span>
-                            <input type="number" step="0.01" class="form-control" id="no_requi" name="no_requi" value="<?php echo $row['NO_REQUI']; ?>" required>
                         </div>
                         <div class="form-group">
                             <label for="cant_insu">Cantidad de Insumo</label>
@@ -126,9 +109,9 @@
             echo "<div class='alert alert-danger' role='alert'>No se encontró el servicio con ID $no_requi.</div>";
         }
         oci_free_statement($stmt);
-        oci_free_statement($insumos_stmt);
         oci_free_statement($ordenes_stmt);
-        oci_free_statement($usuarios_stmt);
+        oci_free_statement($insumos_stmt);
+
         
         }
     oci_close($conn);

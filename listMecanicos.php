@@ -48,8 +48,8 @@
         echo "<table class='table table-striped table-hover'>
             <thead class='table-dark'>
                 <tr>
-                    <th>ID MEC</th>
-                    <th>Nombre MEC</th>
+                    <th>ID</th>
+                    <th>Mecanico</th>
                     <th>Especialidad</th>
                     <th>Acciones</th>                     
                 </thead>
