@@ -14,11 +14,11 @@
 
 <div class="container mt-5">
     <div class="container"><div class="row justify-content-between">
-        <div class="col-4"><a href="regRequi.php" class="btn btn-secondary">Nueva Requisición</a></div>
+        <div class="col-4"><a href="regPagos.php" class="btn btn-secondary">Nueva Orden de Pago</a></div>
         <div class="col-4">
-          <form method="GET" action="listRequisiciones.php" class="mb-3">
+          <form method="GET" action="listOpagos.php" class="mb-3">
             <div class="input-group">
-                <input type="text" name="search" class="form-control" placeholder="Buscar por Insumo" value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+                <input type="text" name="search" class="form-control" placeholder="Buscar por Ciente" value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
                 <button type="submit" class="btn btn-secondary">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/></svg></button>
             </div></form></div></div></div>  
@@ -32,14 +32,16 @@
         //-------------------------------BARRA DE BUSQUEDA        
         $search = isset($_GET['search']) ? $_GET['search'] : '';
 
-        $query = "SELECT R.ID_INSUMO, I.NOMBRE_I, R.ID_SERVI, S.PLACA, R.ID_USUARIO, R.NO_REQUI, R.C_INSU
-                  FROM REQUI R
-                  JOIN INSUMO I ON R.ID_INSUMO = I.ID_INSUMO
-                  JOIN SERVICIO S ON R.ID_SERVI = S.ID_SERVI";
+        $query = "SELECT P.NO_OP, P.FECHA, P.DESCRIPCION, P.MONTO, P.ID_SERVI, S.PLACA, C.NIT, C.NOMBRE_CLI
+                  FROM ORDEN_P P
+                  JOIN SERVICIO S ON P.ID_SERVI = S.ID_SERVI
+                  JOIN VEHICULO V ON S.PLACA = V.PLACA
+                  JOIN CLIENTE C ON V.ID_CLIENTE = C.ID_CLIENTE";
+        
         if (!empty($search)) {
-            $query .= " WHERE I.NOMBRE_I LIKE '%' || :search || '%'";
+            $query .= " WHERE NOMBRE_CLI LIKE '%' || :search || '%'";
         }
-        $query .= " ORDER BY R.NO_REQUI ASC";
+        $query .= " ORDER BY P.NO_OP ASC";
         $stmt = oci_parse($conn, $query);
 
         if (!empty($search)) {
@@ -52,13 +54,14 @@
         echo "<table class='table table-striped table-hover'>
             <thead class='table-dark'>
                 <tr>
-                    <th># Requisición</th>
-                    <th>ID Insumo</th>
-                    <th>Insumo</th>
-                    <th>Cantidad</th>
+                    <th># Pago</th>
+                    <th>Fecha</th>
+                    <th>Descripcion</th>
+                    <th>Monto</th>
                     <th>Orden de Serv.</th>
-                    <th>Vehiculo</th>
-                    <th>Usuario</th>
+                    <th>Placa</th>
+                    <th>Nit</th>
+                    <th>Cliente</th>
                     <th>Acciones   </th>
                 </tr>
             </thead>
@@ -66,19 +69,20 @@
         //----------------------------------LISTAR LOS DATOS DE LA TABLA
         while ($row = oci_fetch_array($stmt, OCI_ASSOC+OCI_RETURN_NULLS)) {
             echo "<tr>";
-                echo "<td>" . $row['NO_REQUI'] . "</td>";
-                echo "<td>" . $row['ID_INSUMO'] . "</td>";
-                echo "<td>" . $row['NOMBRE_I'] . "</td>";
-                echo "<td>" . $row['C_INSU'] . "</td>";
+                echo "<td>" . $row['NO_OP'] . "</td>";
+                echo "<td>" . $row['FECHA'] . "</td>";
+                echo "<td>" . $row['DESCRIPCION'] . "</td>";
+                echo "<td>" . $row['MONTO'] . "</td>";
                 echo "<td>" . $row['ID_SERVI'] . "</td>";
                 echo "<td>" . $row['PLACA'] . "</td>";
-                echo "<td>" . $row['ID_USUARIO'] . "</td>";
+                echo "<td>" . $row['NIT'] . "</td>";
+                echo "<td>" . $row['NOMBRE_CLI'] . "</td>";
             echo "<td>
-                <a href='actuRequi.php?id=" . $row['NO_REQUI'] . "' class='btn btn-primary btn-sm'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill=.'currentColor' class='bi bi-pencil-square' viewBox='0 0 16 16'>
+                <a href='actuPagos.php?id=" . $row['NO_OP'] . "' class='btn btn-primary btn-sm'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill=.'currentColor' class='bi bi-pencil-square' viewBox='0 0 16 16'>
                 <path d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z'/>
                 <path fill-rule='evenodd' d='M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z'/>
                 </svg></a>
-                <a href='eliRequi.php?id=" . $row['NO_REQUI'] . "' class='btn btn-danger btn-sm'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash' viewBox='0 0 16 16'>
+                <a href='eliPagos.php?id=" . $row['NO_OP'] . "' class='btn btn-danger btn-sm'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash' viewBox='0 0 16 16'>
                 <path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z'/>
                 <path d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z'/>
                 </svg></a>
