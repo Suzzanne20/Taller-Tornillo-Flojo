@@ -45,9 +45,9 @@
                   <li><a class="dropdown-item" href="listOservicios.php">Listado de Ordenes</a></li>
                   <li>
                     <hr class="dropdown-divider">
-                  </li>
+                  </li>  
                   <li><a class="dropdown-item" href="listRequisiciones.php">Requisiciones</a></li>
-                  <li><a class="dropdown-item" href="list">Ordenes de Pago</a></li>
+                  <li><a class="dropdown-item" href="listOpagos.php">Ordenes de Pago</a></li>
                 </ul>
               </li>
               
