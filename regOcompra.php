@@ -17,7 +17,7 @@
                     
                     <div class="input-group mb-3">
                         <span class="input-group-text"># OC</span>
-                        <input type="number" step="0.01" class="form-control col-2" id="id_oc" name="id_oc" required>
+                        <input type="number" step="0.01" class="form-control col-2" id="id_oc" name="id_oc">
                     </div>
                     <div class="form-group">
                         <label for="id_insumo">Id Insumo</label>

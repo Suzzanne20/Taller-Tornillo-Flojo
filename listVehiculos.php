@@ -14,7 +14,7 @@
 
 <div class="container mt-5">
     <div class="container"><div class="row justify-content-between">
-        <div class="col-4"><a href="regVehiculos.php" class="btn btn-secondary">Nuevo Registroo</a></div>
+        <div class="col-4"><a href="regVehiculos.php" class="btn btn-secondary">Nuevo Registro</a></div>
         <div class="col-4">
           <form method="GET" action="listVehiculos.php" class="mb-3">
             <div class="input-group">

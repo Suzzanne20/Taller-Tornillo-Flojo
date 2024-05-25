@@ -15,9 +15,14 @@
     <h1>Nueva Requisicion</h1><br>
                 <form action="registrarRequi.php" method="post">
                     <div class="input-group mb-3">
-                        <label class="input-group-text col-5" for="id_insumo">Insumo</label>
-                        <select class="form-select" id="id_insumo" name="id_insumo" required>
-                            <?php                                                      
+                        <span class="input-group-text col-5">No. de Requicisión</span>
+                        <input type="number" step="0.01" class="form-control" id="no_requi" name="no_requi" required>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <label class="input-group-text col-5" for="id_servi">Orden de Servicio</label>
+                        <select class="form-select" id="id_servi" name="id_servi" required>
+                            <?php
                                 require_once 'conexion.php';
                                 $conn = oci_connect(DB_USER, DB_PASSWORD, DB_HOST);
                                 if (!$conn) {
@@ -25,6 +30,20 @@
                                     trigger_error(htmlentities($e['ERROR DE CONEXION'], ENT_QUOTES), E_USER_ERROR);
                                 } 
                                 else {
+                                $query = "SELECT ID_SERVI, PLACA FROM SERVICIO ORDER BY ID_SERVI ASC";
+                                $stmt = oci_parse($conn, $query);
+                                oci_execute($stmt);
+                                while ($row = oci_fetch_array($stmt, OCI_ASSOC+OCI_RETURN_NULLS)) {
+                                    echo "<option value='" . $row['ID_SERVI'] . "'>" . $row['ID_SERVI'] .' - ' . $row['PLACA'] . "</option>";
+                                }
+                                oci_free_statement($stmt);}
+                            ?>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text col-5" for="id_insumo">Insumo</label>
+                        <select class="form-select" id="id_insumo" name="id_insumo" required>
+                            <?php                                                      
                                     $query = "SELECT ID_INSUMO, NOMBRE_I FROM INSUMO ORDER BY NOMBRE_I ASC";
                                     $stmt = oci_parse($conn, $query);
                                     oci_execute($stmt);
@@ -32,42 +51,8 @@
                                         echo "<option value='" . $row['ID_INSUMO'] . "'>" . $row['NOMBRE_I'] . "</option>";
                                     }
                                     oci_free_statement($stmt);
-                                }
                             ?>
                         </select>
-                    </div>
-                    <div class="input-group mb-3">
-                        <label class="input-group-text col-5" for="id_servi">Orden de Servicio</label>
-                        <select class="form-select" id="id_servi" name="id_servi" required>
-                            <?php
-                                $query = "SELECT ID_SERVI, PLACA FROM SERVICIO ORDER BY ID_SERVI ASC";
-                                $stmt = oci_parse($conn, $query);
-                                oci_execute($stmt);
-                                while ($row = oci_fetch_array($stmt, OCI_ASSOC+OCI_RETURN_NULLS)) {
-                                    echo "<option value='" . $row['ID_SERVI'] . "'>" . $row['ID_SERVI'] .' - ' . $row['PLACA'] . "</option>";
-                                }
-                                oci_free_statement($stmt);
-                            ?>
-                        </select>
-                    </div>
-                    <div class="input-group mb-3">
-                        <label class="input-group-text col-5" for="id_usuario">ID Usuario</label>
-                        <select class="form-select" id="id_usuario" name="id_usuario" required>
-                            <?php
-                                $query = "SELECT ID_USUARIO, NOMBRE_U FROM USUARIO ORDER BY NOMBRE_U ASC";
-                                $stmt = oci_parse($conn, $query);
-                                oci_execute($stmt);
-                                while ($row = oci_fetch_array($stmt, OCI_ASSOC+OCI_RETURN_NULLS)) {
-                                    echo "<option value='" . $row['ID_USUARIO'] . "'>" . $row['ID_USUARIO'] .' - ' . $row['NOMBRE_U'] . "</option>";
-                                }
-                                oci_free_statement($stmt);
-                                oci_close($conn);
-                            ?>
-                        </select>
-                    </div>                  
-                    <div class="input-group mb-3">
-                        <span class="input-group-text col-5">No. de Requicisión</span>
-                        <input type="number" step="0.01" class="form-control" id="no_requi" name="no_requi" required>
                     </div>
                     <div class="form-group">
                         <label for="cant_insu">Cantidad de Insumo</label>

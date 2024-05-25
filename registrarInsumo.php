@@ -18,9 +18,8 @@
     $costo = $_POST['costo'];
     $stock = $_POST['stock'];
     $mini = $_POST['mini'];
-    $id_tipo = $_POST['id_tipo'];
     $descri_i = $_POST['descri_i'];
-    $id_oc = $_POST['id_oc'];
+    $id_tipo = $_POST['id_tipo'];
 
         require_once 'conexion.php';//<---CONEXION BD
         $conn = oci_connect(DB_USER, DB_PASSWORD, DB_HOST);
@@ -29,16 +28,15 @@
                 trigger_error(htmlentities($e['ERROR DE CONEXION'], ENT_QUOTES), E_USER_ERROR);
             }
 
-        $query = 'INSERT INTO INSUMO (ID_INSUMO, NOMBRE_I, COSTO, STOCK, MINI, ID_TIPO, DESCRI_I, ID_OC) VALUES (:id_insumo, :nombre_i, :costo, :stock, :mini, :id_tipo, :descri_i, :id_oc)';
+        $query = 'INSERT INTO INSUMO (ID_INSUMO, NOMBRE_I, COSTO, STOCK, MINI, DESCRI_I, ID_TIPO) VALUES (:id_insumo, :nombre_i, :costo, :stock, :mini, :descri_i, :id_tipo)';
         $stmt = oci_parse($conn, $query);
         oci_bind_by_name($stmt, ':id_insumo', $id_insumo);
         oci_bind_by_name($stmt, ':nombre_i', $nombre_i);
         oci_bind_by_name($stmt, ':costo', $costo);
         oci_bind_by_name($stmt, ':stock', $stock);
         oci_bind_by_name($stmt, ':mini', $mini);
-        oci_bind_by_name($stmt, ':id_tipo', $id_tipo);
         oci_bind_by_name($stmt, ':descri_i', $descri_i);
-        oci_bind_by_name($stmt, ':id_oc', $id_oc);
+        oci_bind_by_name($stmt, ':id_tipo', $id_tipo);
 
     if (oci_execute($stmt)) {
         echo "<div class='modal-dialog text-center'><div class='modal-content'><div class='container'><br>";      

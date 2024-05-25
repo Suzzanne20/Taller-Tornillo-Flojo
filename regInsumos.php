@@ -35,6 +35,10 @@
                         <label for="mini">Mínimo</label>
                         <input type="number" class="form-control" id="mini" name="mini" required>
                     </div>
+                    <div class="form-group">
+                        <label for="descri_i">Descripción</label>
+                        <input type="text" class="form-control" id="descri_i" name="descri_i" required>
+                    </div>
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="id_tipo">Tipo de Insumo</label>
                         <select class="form-select" id="id_tipo" name="id_tipo" required>
@@ -43,15 +47,7 @@
                             <option value="3">Repuesto</option>
                             <option value="4">Consumible</option>
                         </select>
-                    </div>                   
-                    <div class="form-group">
-                        <label for="descri_i">Descripción</label>
-                        <input type="text" class="form-control" id="descri_i" name="descri_i" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="id_oc">ID OC</label>
-                        <input type="number" class="form-control" id="id_oc" name="id_oc" required>
-                    </div>
+                    </div> 
                     <button type="submit" class="btn btn-primary">Registrar Insumo</button>
                 </form>
     <br></div></div></div>

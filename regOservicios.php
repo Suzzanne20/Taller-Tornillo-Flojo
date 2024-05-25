@@ -26,8 +26,8 @@
                     </div>
                     <div><label>Insumos</label><br>
                     <div class="input-group mb-3">
-                        <span class="input-group-text">Ingrese # de Requisición</span>
-                        <input type="number" class="form-control" id="no_requi" name="no_requi">
+                        <span class="input-group-text">Prox. Servicio</span>
+                        <input type="number" class="form-control" id="prox_serv" name="prox_serv">
                     </div> </div>          
                     <div class="input-group mb-3">
                         <label class="input-group-text col-5" for="id_tipo">Placa</label>

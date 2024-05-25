@@ -15,8 +15,8 @@
     <h1>Registrar Mecánico</h1><br>
     <form action="registrarMecanico.php" method="post">
         <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" required>
+            <label for="nombre_mec">Nombre</label>
+            <input type="text" class="form-control" id="nombre_mec" name="nombre_mec" required>
         </div>
         <div class="form-group">
             <label for="especialidad">Especialidad</label>

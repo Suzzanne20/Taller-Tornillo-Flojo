@@ -15,10 +15,10 @@
         // Datos
         $fecha = $_POST['fecha'];
         $descripcion = $_POST['descripcion'];
-        $no_requi = $_POST['no_requi'];
-        $placa = $_POST['placa'];
+        $prox_serv = $_POST['prox_serv'];
         $id_usuario = $_POST['id_usuario'];
         $id_tserv = $_POST['id_tserv'];
+        $placa = $_POST['placa'];
         $id_mec = $_POST['id_mec'];
         $id_estado = $_POST['id_estado'];
 
@@ -29,15 +29,15 @@
                 trigger_error(htmlentities($e['ERROR DE CONEXION'], ENT_QUOTES), E_USER_ERROR);
             }
 
-        $query = 'INSERT INTO SERVICIO (FECHA, DESCRIPCION, NO_REQUI, PLACA, ID_USUARIO, ID_TSERV, ID_MEC, ID_ESTADO) 
-                  VALUES (:fecha, :descripcion, :no_requi, :placa, :id_usuario, :id_tserv, :id_mec, :id_estado)';
+        $query = 'INSERT INTO SERVICIO (FECHA, DESCRIPCION, PROX_SERV, ID_USUARIO, ID_TSERV, PLACA, ID_MEC, ID_ESTADO) 
+                  VALUES (:fecha, :descripcion, :prox_serv, :id_usuario, :id_tserv, :placa,  :id_mec, :id_estado)';
         $stmt = oci_parse($conn, $query);
         oci_bind_by_name($stmt, ':fecha', $fecha);
         oci_bind_by_name($stmt, ':descripcion', $descripcion);
-        oci_bind_by_name($stmt, ':no_requi', $no_requi);
-        oci_bind_by_name($stmt, ':placa', $placa);
+        oci_bind_by_name($stmt, ':prox_serv', $prox_serv);
         oci_bind_by_name($stmt, ':id_usuario', $id_usuario);
         oci_bind_by_name($stmt, ':id_tserv', $id_tserv);
+        oci_bind_by_name($stmt, ':placa', $placa);
         oci_bind_by_name($stmt, ':id_mec', $id_mec);
         oci_bind_by_name($stmt, ':id_estado', $id_estado);
 
