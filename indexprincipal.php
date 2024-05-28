@@ -116,10 +116,10 @@
                     <div class="card">
                         <div class="card-body">
                         <h3 class="card-title">Servicios</h3>
-                        <a href="listOservicios.php" class="btn btn-dark mb-3">Ordenes de Servicio</a>
-                        <a href="regOservicios.php" class="btn btn-dark mb-3">Nueva Orden de Servicio</a>
+                        <a href="listOservicios.php" class="btn btn-dark mb-3">Ordenes de Servicio</a><br>
                         <a href="listRequisiciones.php" class="btn btn-dark mb-3">Requisiciones</a>
                         <a href="listOpagos.php" class="btn btn-dark mb-3">Ordenes de Pago</a>
+                        <a href="reclamos.php" class="btn btn-dark mb-3">Reclamos</a>
                         </div>
                     </div>
                 </div>
@@ -142,8 +142,9 @@
                         <h3 class="card-title">Registros</h3>
                         <a href="listClientes.php" class="btn btn-dark mb-3">Clientes</a>
                         <a href="listVehiculos.php" class="btn btn-dark mb-3">Vehiculos</a><br>
-                        <a href="listMecanicos.php" class="btn btn-dark mb-3">Mecanicos</a><br>
-                        <a href="proveedores.php" class="btn btn-dark mb-3">Proveedores</a>
+                        <a href="listMecanicos.php" class="btn btn-dark mb-3">Mecanicos</a>
+                        <a href="proveedores.php" class="btn btn-dark mb-3">Proveedores</a><br>
+                        <a href="citas.php" class="btn btn-dark mb-3">Citas</a>
                         </div>
                     </div>
                 </div>

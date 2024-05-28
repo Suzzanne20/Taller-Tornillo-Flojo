@@ -13,7 +13,6 @@
 <div class="container mt-5">
 <?php
     // Datos
-    $id_insumo = $_POST['id_insumo'];
     $nombre_i = $_POST['nombre_i'];
     $costo = $_POST['costo'];
     $stock = $_POST['stock'];
@@ -28,9 +27,8 @@
                 trigger_error(htmlentities($e['ERROR DE CONEXION'], ENT_QUOTES), E_USER_ERROR);
             }
 
-        $query = 'INSERT INTO INSUMO (ID_INSUMO, NOMBRE_I, COSTO, STOCK, MINI, DESCRI_I, ID_TIPO) VALUES (:id_insumo, :nombre_i, :costo, :stock, :mini, :descri_i, :id_tipo)';
+        $query = 'INSERT INTO INSUMO (NOMBRE_I, COSTO, STOCK, MINI, DESCRI_I, ID_TIPO) VALUES (:nombre_i, :costo, :stock, :mini, :descri_i, :id_tipo)';
         $stmt = oci_parse($conn, $query);
-        oci_bind_by_name($stmt, ':id_insumo', $id_insumo);
         oci_bind_by_name($stmt, ':nombre_i', $nombre_i);
         oci_bind_by_name($stmt, ':costo', $costo);
         oci_bind_by_name($stmt, ':stock', $stock);

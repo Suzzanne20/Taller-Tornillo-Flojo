@@ -104,7 +104,15 @@
                 <input type="text" id="username" name="username" required>
                 <label for="password">Contraseña:</label>
                 <input type="password" id="password" name="password" required>
+                <label for="password">Sucursal:</label>
+                <select class="form-select" id="sucursal" name="sucursal" required>
+                    <option selected>Seleccionar...</option>
+                    <option value="1">SUCURSAL 1</option>
+                    <option value="2">SUCURSAL 2</option>
+                    <option value="3">SUCURSAL 3</option>
+                </select><br>
                 <button type="submit">Iniciar Sesión</button>
+                
             </form>
         </div>
     </div>

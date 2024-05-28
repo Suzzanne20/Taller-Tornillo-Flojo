@@ -48,6 +48,7 @@
                   </li>  
                   <li><a class="dropdown-item" href="listRequisiciones.php">Requisiciones</a></li>
                   <li><a class="dropdown-item" href="listOpagos.php">Ordenes de Pago</a></li>
+                  <li><a class="dropdown-item" href="reclamos.php">Reclamos</a></li>
                 </ul>
               </li>
               
@@ -77,7 +78,7 @@
                   <li>
                     <hr class="dropdown-divider">
                   </li>
-                  <li><a class="dropdown-item" href="usuariosList.php">Usuarios</a></li>
+                  <li><a class="dropdown-item" href="citas.php">Citas</a></li>
                 </ul>
               </li> 
               <br>

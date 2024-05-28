@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+        <link href="layout/Fondos.css" rel="stylesheet"> <!-- FONDOOOO -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <title>TALLER TF</title>
 </head>
@@ -14,10 +15,6 @@
     <div class="modal-dialog"><div class="modal-content"><div class="container">
     <h1>Nueva Requisicion</h1><br>
                 <form action="registrarRequi.php" method="post">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text col-5">No. de Requicisión</span>
-                        <input type="number" step="0.01" class="form-control" id="no_requi" name="no_requi" required>
-                    </div>
 
                     <div class="input-group mb-3">
                         <label class="input-group-text col-5" for="id_servi">Orden de Servicio</label>

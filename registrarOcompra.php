@@ -13,7 +13,6 @@
 <div class="container mt-5">
 <?php
     // Datos
-    $id_oc = $_POST['id_oc'];
     $id_insumo = $_POST['id_insumo'];
     $cant_insu = $_POST['cant_insu'];
     $fecha= $_POST['fecha'];
@@ -28,9 +27,8 @@
                 trigger_error(htmlentities($e['ERROR DE CONEXION'], ENT_QUOTES), E_USER_ERROR);
             }
 
-        $query = 'INSERT INTO ORDEN_COM (ID_OC, ID_INSUMO, CANT_INSU, FECHA, DESCRI, ID_PROV, ID_USUARIO) VALUES (:id_oc, :id_insumo, :cant_insu, :fecha, :descri, :id_prov, :id_usuario)';
+        $query = 'INSERT INTO ORDEN_COM (ID_INSUMO, CANT_INSU, FECHA, DESCRI, ID_PROV, ID_USUARIO) VALUES ( :id_insumo, :cant_insu, :fecha, :descri, :id_prov, :id_usuario)';
         $stmt = oci_parse($conn, $query);
-        oci_bind_by_name($stmt, ':id_oc', $id_oc);
         oci_bind_by_name($stmt, ':id_insumo', $id_insumo);
         oci_bind_by_name($stmt, ':cant_insu', $cant_insu);
         oci_bind_by_name($stmt, ':fecha', $fecha);
