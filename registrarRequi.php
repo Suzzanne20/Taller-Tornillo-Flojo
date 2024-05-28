@@ -13,7 +13,6 @@
 <div class="container mt-5">
 <?php
         // Datos
-        $no_requi = $_POST['no_requi'];
         $id_servi = $_POST['id_servi'];
         $id_insumo = $_POST['id_insumo'];
         $c_insu = $_POST['c_insu'];
@@ -25,10 +24,9 @@
                 trigger_error(htmlentities($e['ERROR DE CONEXION'], ENT_QUOTES), E_USER_ERROR);
             }
 
-        $query = 'INSERT INTO REQUI (NO_REQUI, C_INSU, ID_SERVI, ID_INSUMO  ) 
-                  VALUES (:no_requi, :c_insu, :id_servi, :id_insumo)';
+        $query = 'INSERT INTO REQUI ( C_INSU, ID_SERVI, ID_INSUMO  ) 
+                  VALUES ( :c_insu, :id_servi, :id_insumo)';
         $stmt = oci_parse($conn, $query);
-        oci_bind_by_name($stmt, ':no_requi', $no_requi);
         oci_bind_by_name($stmt, ':id_servi', $id_servi);
         oci_bind_by_name($stmt, ':id_insumo', $id_insumo);
         oci_bind_by_name($stmt, ':c_insu', $c_insu);
