@@ -3,15 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/Taller/login.php</file>
-            <file>file:/C:/xampp/htdocs/Taller/citas.php</file>
-            <file>file:/C:/xampp/htdocs/Taller/index.php</file>
-            <file>file:/C:/xampp/htdocs/Taller/listClientes.php</file>
-            <file>file:/C:/xampp/htdocs/Taller/indexprincipal.php</file>
-            <file>file:/C:/xampp/htdocs/Taller/reclamos.php</file>
-            <file>file:/C:/xampp/htdocs/Taller/registrarInsumo.php</file>
-            <file>file:/C:/xampp/htdocs/Taller/regMecanicos.php</file>
-            <file>file:/C:/xampp/htdocs/Taller/regOservicios.php</file>
+            <file>file:/E:/XAMPP/htdocs/Taller/layout/plantilla.blade.php</file>
+            <file>file:/E:/XAMPP/htdocs/Taller/insuRecibido.php</file>
+            <file>file:/E:/XAMPP/htdocs/Taller/actuOcompra.php</file>
+            <file>file:/E:/XAMPP/htdocs/Taller/listOcompra.php</file>
         </group>
     </open-files>
 </project-private>
